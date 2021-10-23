@@ -10,4 +10,4 @@ text = joke(url)
 
 def text_to_speech():
     audio = gTTS(text=text, slow=True, lang="en")
-    audio.save("video/audio.mp3")
+    audio.save("audio/audio.mp3")
