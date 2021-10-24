@@ -1,11 +1,10 @@
-import spacy
-import en_core_web_lg
+from google_images_download import google_images_download
 
-nlp = en_core_web_lg.load()
+response = google_images_download.googleimagesdownload()
 
 
-def keywords(joke):
-    doc = nlp(joke)
-    keywords = doc.ents
-
-    return keywords
+def download_image(joke):
+    arguments = {"keywords": joke, "limit": 1,
+                 "print_urls": False, "no_directory": "true", "format": "jpg", "output_directory": "image"}
+    paths = response.download(arguments)
+    print(paths)
