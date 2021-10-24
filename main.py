@@ -9,7 +9,7 @@ load_dotenv()
 url = os.getenv("JOKE_URL")
 text = joke(url)
 
-# text_to_speech(text)
+text_to_speech(text)
 new_text = ""
 for char in text:
     if char != ",":
