@@ -18,8 +18,10 @@ for char in string.punctuation:
 
 download_image(text)
 
+
 audio_path = "assets/audio.mp3"
-image_path = "assets/image.png"
+image_path = "dataset/image/" + os.listdir("dataset/image")[0]
 output_path = "video/video.mp4"
 
-#add_static_image_to_audio(image_path, audio_path, output_path)
+
+add_static_image_to_audio(image_path, audio_path, output_path)
