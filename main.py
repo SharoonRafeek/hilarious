@@ -22,6 +22,6 @@ download_image(new_text)
 
 audio_path = "assets/audio.mp3"
 image_path = "assets/image.png"
-output_path = "video/video.mp4"
+output_path = "assets/video.mp4"
 
 add_static_image_to_audio(image_path, audio_path, output_path)
