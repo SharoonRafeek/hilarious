@@ -1,4 +1,5 @@
 import os
+import string
 from dotenv import load_dotenv
 from joke_api.joke import joke
 from audio.text_to_audio import text_to_speech
@@ -12,16 +13,13 @@ url = os.getenv("JOKE_URL")
 text = joke(url)
 
 text_to_speech(text)
-new_text = ""
-for char in text:
-    if char != ",":
-        new_text += char
+for char in string.punctuation:
+    text = text.replace(char, '')
 
-
-download_image(new_text)
+download_image(text)
 
 audio_path = "assets/audio.mp3"
 image_path = "assets/image.png"
-output_path = "assets/video.mp4"
+output_path = "video/video.mp4"
 
-add_static_image_to_audio(image_path, audio_path, output_path)
+#add_static_image_to_audio(image_path, audio_path, output_path)
