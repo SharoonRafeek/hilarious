@@ -8,19 +8,29 @@ from video.video import add_static_image_to_audio
 
 
 load_dotenv()
-
 url = os.getenv("JOKE_URL")
-text = joke(url)
 
-text_to_speech(text)
-for char in string.punctuation:
-    text = text.replace(char, '')
 
-download_image(text)
+def collecting_image_audio():
+    text = joke(url)
+    text_to_speech(text)
+    for char in string.punctuation:
+        text = text.replace(char, '')
 
+    download_image(text)
+
+    image = os.listdir("dataset/image")
+
+    if len(image) == 0:
+        collecting_image_audio()
+    else:
+        return image
+
+
+image = collecting_image_audio()
 
 audio_path = "assets/audio.mp3"
-image_path = "dataset/image/" + os.listdir("dataset/image")[0]
+image_path = "dataset/image/" + image[0]
 output_path = "video/video.mp4"
 
 
