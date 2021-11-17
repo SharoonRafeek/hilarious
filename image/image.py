@@ -1,17 +1,21 @@
-from bing_image_downloader import downloader
+from simple_image_download import simple_image_download as simp
 import os
 import shutil
+response = simp.simple_image_download
 
 
 def download_image(joke):
-    dataset_dir = os.listdir("dataset")
+    if len(joke) > 50:
+        joke = joke[:51]
 
-    if dataset_dir != []:
-        for dir in dataset_dir:
-            shutil.rmtree("dataset/" + dir)
+    simple_images_dir = os.listdir("simple_images")
 
-    downloader.download(joke, adult_filter_off=True, limit=1)
+    if simple_images_dir != []:
+        for dir in simple_images_dir:
+            shutil.rmtree("simple_images/" + dir)
 
-    image_dir = os.listdir("dataset")[0]
+    response().download(joke, 1)
 
-    os.rename("dataset/" + image_dir, "dataset/image")
+    image_dir = os.listdir("simple_images")[0]
+
+    os.rename("simple_images/" + image_dir, "simple_images/image")
