@@ -12,36 +12,43 @@ from video.upload_video import upload_video
 load_dotenv()
 url = os.getenv("JOKE_URL")
 
-while True:
 
-    def collecting_image_audio():
-        text = joke(url)
-        text_to_speech(text)
-        for char in string.punctuation:
-            text = text.replace(char, '')
+def main():
+    while True:
 
-        download_image(text)
+        def collecting_image_audio():
+            text = joke(url)
+            title = text
+            text_to_speech(text)
+            for char in string.punctuation:
+                text = text.replace(char, '')
 
-        image = os.listdir("simple_images/image")
+            download_image(text)
 
-        if len(image) == 0:
-            collecting_image_audio()
-        else:
-            return image, text
+            image = os.listdir("simple_images/image")
 
-    image, title = collecting_image_audio()
+            if len(image) == 0:
+                collecting_image_audio()
+            else:
+                return image, title
 
-    audio_path = "assets/audio.mp3"
-    image_path = "simple_images/image/" + image[0]
-    output_path = "video/video.mp4"
+        image, title = collecting_image_audio()
 
-    add_static_image_to_audio(image_path, audio_path, output_path)
+        audio_path = "assets/audio.mp3"
+        image_path = "simple_images/image/" + image[0]
+        output_path = "video/video.mp4"
 
-    client_id = os.getenv("CLIENT_ID")
-    client_secret = os.getenv("CLIENT_SECRET")
-    access_token = os.getenv("ACCESS_TOKEN")
-    refresh_token = os.getenv("REFRESH_TOKEN")
+        add_static_image_to_audio(image_path, audio_path, output_path)
 
-    upload_video(client_id, client_secret, access_token, refresh_token, title)
+        client_id = os.getenv("CLIENT_ID")
+        client_secret = os.getenv("CLIENT_SECRET")
+        access_token = os.getenv("ACCESS_TOKEN")
+        refresh_token = os.getenv("REFRESH_TOKEN")
 
-    time.sleep(10800)
+        #upload_video(client_id, client_secret, access_token, refresh_token, title)
+
+        time.sleep(10800)
+
+
+if __name__ == "__main__":
+    main()
