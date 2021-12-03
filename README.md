@@ -1,5 +1,5 @@
 # hilarious
 
-A automated Youtube channel.
+An automated Youtube channel.
 
 https://www.youtube.com/channel/UCuGZuxbmei0tnUvfPPfhBCg/videos
